@@ -1155,6 +1155,16 @@ a {
   padding: 1rem;
 }
 
+/* compact embedded iframe for week previews */
+.mini-youtube-embed .youtube-embed-frame {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  min-height: 120px;
+  border-radius: 12px;
+  border: 0;
+  display: block;
+}
+
 .mini-youtube-label {
   color: #ffbcbc;
   font-size: 0.76rem;
