@@ -343,6 +343,55 @@ a {
   z-index: 1000;
 }
 
+/* Ensure navbar content is vertically centered */
+.custom-navbar {
+  display: flex;
+  align-items: center;
+}
+
+.custom-navbar .navbar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.custom-navbar .navbar-brand,
+.custom-navbar .navbar-nav {
+  display: flex;
+  align-items: center;
+}
+
+/* ensure brand stays on one line and nav items align to the right */
+.custom-navbar > .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.custom-navbar .navbar-brand {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.navbar-nav {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.custom-navbar .navbar-brand {
+  line-height: 1;
+}
+
+.navbar-nav .nav-link {
+  padding: 0.5rem 1rem !important;
+  line-height: 1;
+}
+
 .navbar-brand,
 .hero-title,
 .section-title,
@@ -1679,4 +1728,118 @@ iframe {
     width: 100%;
     max-width: 280px;
   }
+}
+
+/* Visual polish (validator-safe additions) */
+
+/* accessible focus outlines for interactive elements */
+:focus-visible {
+  outline: 3px solid rgba(255, 77, 77, 0.18);
+  outline-offset: 3px;
+}
+
+.hero-accent-band {
+  position: absolute;
+  inset: -12% -10% auto -10%;
+  height: 40%;
+  transform: rotate(-6deg);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 77, 77, 0.06),
+    rgba(255, 255, 255, 0.02)
+  );
+  pointer-events: none;
+  border-radius: 40px;
+  filter: blur(8px);
+}
+
+/* gentle entrance animation used on major blocks */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-panel,
+.project-side-card,
+.portfolio-intro-card,
+.info-block {
+  animation: fadeUp 560ms ease both;
+}
+
+.hero-title {
+  text-wrap: balance;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.55);
+}
+
+/* refined button shadows and hover depth without vendor prefixes */
+.btn {
+  transition:
+    transform 220ms cubic-bezier(0.2, 0.9, 0.2, 1),
+    box-shadow 220ms ease,
+    background 220ms ease;
+}
+
+.btn-primary {
+  box-shadow:
+    0 12px 34px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(255, 77, 77, 0.06) inset;
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.42);
+}
+
+/* subtle glassy card accent */
+.card-better {
+  border-radius: 20px;
+  padding: 1.5rem;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.01)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* improve readable line length in main content */
+.content-wrap {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* lighten link hover affordance */
+a:hover,
+.nav-link:hover {
+  text-decoration: none;
+  filter: brightness(1.05);
+}
+
+/* micro-interactions for images */
+.card-image img,
+.feature-media img {
+  transition:
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 420ms ease;
+}
+.card-image:hover img,
+.feature-media:hover img {
+  transform: scale(1.04);
+  filter: contrast(1.02) saturate(1.03);
+}
+
+/* small utility: centered helper for simple hero intros */
+.hero-center {
+  display: grid;
+  place-items: center;
+  text-align: center;
 }
