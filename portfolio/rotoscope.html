@@ -99,47 +99,7 @@
                 <i class="fab fa-youtube"></i>
                 <span>Final video result</span>
               </div>
-              <div class="youtube-screen youtube-embed-wrapper">
-                <iframe
-                  class="youtube-embed-frame"
-                  src="https://www.youtube.com/embed/HqZ0ruLVHPw?si=-BaJRnrulZPHCtCQ"
-                  title="Rotoscope final video result"
-                  loading="lazy"
-                  allow="
-                    accelerometer;
-                    autoplay;
-                    clipboard-write;
-                    encrypted-media;
-                    gyroscope;
-                    picture-in-picture;
-                    web-share;
-                  "
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allowfullscreen
-                ></iframe>
-              </div>
-              <p class="placeholder-tip">
-                This embedded player shows the final output directly on the
-                website.
-                <br />
-                Reference/source video:
-                <a
-                  href="https://youtu.be/HqZ0ruLVHPw?si=-BaJRnrulZPHCtCQ"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >Open reference video</a
-                >
-              </p>
-
-              <p
-                class="video-disclaimer"
-                style="color: #b6b6b6; font-size: 0.95rem; margin-top: 0.8rem"
-              >
-                Disclaimer: The video is hosted on YouTube; all rights to the
-                content belong to their respective owners. This embed is for
-                educational and classroom review purposes only.
-              </p>
-              <!-- Final video is not yet available: show placeholder here -->
+              <!-- Final video placeholder (final not yet available) -->
               <div class="youtube-screen youtube-embed-wrapper">
                 <div
                   class="video-placeholder"
@@ -164,22 +124,13 @@
                       margin: 0;
                     "
                   >
-                    The final edited video will appear here once it's ready. For
-                    now, a reference/source clip is available below.
+                    The final edited video will appear here once it's ready. A
+                    short source clip is available below for reference.
                   </p>
                 </div>
               </div>
 
-              <p
-                class="video-disclaimer"
-                style="color: #b6b6b6; font-size: 0.95rem; margin-top: 0.8rem"
-              >
-                Disclaimer: The source clip below is hosted on YouTube; all
-                rights to the content belong to their respective owners. The
-                embed is for educational and classroom review purposes only.
-              </p>
-
-              <!-- Reference / Source Video (separate from final) -->
+              <!-- Compact Reference / Source Video (keeps page light) -->
               <div class="youtube-source" style="margin-top: 1rem">
                 <p
                   class="youtube-badge"
@@ -187,7 +138,10 @@
                 >
                   SOURCE VIDEO
                 </p>
-                <div class="youtube-embed-wrapper" style="margin-top: 0.75rem">
+                <div
+                  class="mini-youtube-embed youtube-embed-wrapper"
+                  style="margin-top: 0.75rem"
+                >
                   <iframe
                     class="youtube-embed-frame"
                     src="https://www.youtube.com/embed/HqZ0ruLVHPw?si=-BaJRnrulZPHCtCQ"
@@ -217,6 +171,16 @@
                     rel="noopener noreferrer"
                     >Open source video</a
                   >
+                </p>
+
+                <!-- Disclaimer positioned below the compact source video -->
+                <p
+                  class="video-disclaimer"
+                  style="color: #b6b6b6; font-size: 0.95rem; margin-top: 0.6rem"
+                >
+                  Disclaimer: The source clip above is hosted on YouTube; rights
+                  to the content belong to their respective owners. This embed
+                  is for educational and classroom review purposes only.
                 </p>
               </div>
             </div>
