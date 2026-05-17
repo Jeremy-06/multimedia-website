@@ -95,16 +95,15 @@
             <div class="video-placeholder youtube-placeholder">
               <div class="youtube-badge">
                 <i class="fab fa-youtube"></i>
-                <span>YouTube showcase</span>
+                <span>Featured project video</span>
               </div>
               <div class="youtube-screen">
                 <i class="fas fa-play-circle"></i>
-                <strong>Main project video</strong>
-                <code>https://www.youtube.com/embed/VIDEO_ID_HERE</code>
+                <strong>Orbital motion showcase</strong>
+                <p class="placeholder-tip">
+                  Selected highlights from the project presentation appear here.
+                </p>
               </div>
-              <p class="placeholder-tip">
-                Replace VIDEO_ID_HERE with your uploaded YouTube video ID.
-              </p>
             </div>
           </div>
         </div>
@@ -235,6 +234,7 @@
     </footer>
 
     <script>
+      /* jshint esversion: 8 */
       const orbitalPeriods = {
         mercury: 0.2408467,
         venus: 0.61519726,
@@ -248,77 +248,91 @@
       };
 
       const planetMeta = [
-        [
-          "mercury",
-          "Mercury",
-          "88 Earth days",
-          "57.9 million km",
-          "The smallest and fastest planet, with dramatic temperature swings and a cratered surface.",
-        ],
-        [
-          "venus",
-          "Venus",
-          "225 Earth days",
-          "108.2 million km",
-          "Earth's cloud-covered twin, shaped by a thick atmosphere and extreme greenhouse heat.",
-        ],
-        [
-          "earth",
-          "Earth",
-          "365.25 Earth days",
-          "149.6 million km",
-          "Our reference planet and the only known world with confirmed life.",
-        ],
-        [
-          "mars",
-          "Mars",
-          "687 Earth days",
-          "227.9 million km",
-          "A cold desert planet known for iron-rich terrain, dust storms, and exploration interest.",
-        ],
-        [
-          "jupiter",
-          "Jupiter",
-          "11.86 Earth years",
-          "778.5 million km",
-          "The gas giant with immense storms, strong gravity, and a huge magnetosphere.",
-        ],
-        [
-          "saturn",
-          "Saturn",
-          "29.45 Earth years",
-          "1.43 billion km",
-          "A ringed giant with striking banding and an iconic silhouette.",
-        ],
-        [
-          "uranus",
-          "Uranus",
-          "84.02 Earth years",
-          "2.87 billion km",
-          "An ice giant that rotates on its side, giving it an unusual orbital character.",
-        ],
-        [
-          "neptune",
-          "Neptune",
-          "164.79 Earth years",
-          "4.50 billion km",
-          "A deep blue giant known for powerful winds and distant orbiting.",
-        ],
-        [
-          "pluto",
-          "Pluto",
-          "248 Earth years",
-          "5.91 billion km",
-          "A dwarf planet at the edge of the system, moving slowly through the outer dark.",
-        ],
+        {
+          key: "mercury",
+          name: "Mercury",
+          period: "88 Earth days",
+          distance: "57.9 million km",
+          description:
+            "The smallest and fastest planet, with dramatic temperature swings and a cratered surface.",
+        },
+        {
+          key: "venus",
+          name: "Venus",
+          period: "225 Earth days",
+          distance: "108.2 million km",
+          description:
+            "Earth's cloud-covered twin, shaped by a thick atmosphere and extreme greenhouse heat.",
+          videoId: "kqeOiMRlByo",
+        },
+        {
+          key: "earth",
+          name: "Earth",
+          period: "365.25 Earth days",
+          distance: "149.6 million km",
+          description:
+            "Our reference planet and the only known world with confirmed life.",
+          videoId: "oaf6P21y1Kw",
+        },
+        {
+          key: "mars",
+          name: "Mars",
+          period: "687 Earth days",
+          distance: "227.9 million km",
+          description:
+            "A cold desert planet known for iron-rich terrain, dust storms, and exploration interest.",
+          videoId: "hV2vlUG4brQ",
+        },
+        {
+          key: "jupiter",
+          name: "Jupiter",
+          period: "11.86 Earth years",
+          distance: "778.5 million km",
+          description:
+            "The gas giant with immense storms, strong gravity, and a huge magnetosphere.",
+        },
+        {
+          key: "saturn",
+          name: "Saturn",
+          period: "29.45 Earth years",
+          distance: "1.43 billion km",
+          description:
+            "A ringed giant with striking banding and an iconic silhouette.",
+        },
+        {
+          key: "uranus",
+          name: "Uranus",
+          period: "84.02 Earth years",
+          distance: "2.87 billion km",
+          description:
+            "An ice giant that rotates on its side, giving it an unusual orbital character.",
+        },
+        {
+          key: "neptune",
+          name: "Neptune",
+          period: "164.79 Earth years",
+          distance: "4.50 billion km",
+          description:
+            "A deep blue giant known for powerful winds and distant orbiting.",
+          videoId: "itVYrmmuECE",
+        },
+        {
+          key: "pluto",
+          name: "Pluto",
+          period: "248 Earth years",
+          distance: "5.91 billion km",
+          description:
+            "A dwarf planet at the edge of the system, moving slowly through the outer dark.",
+        },
       ];
 
       const planetCards = document.getElementById("planetCards");
 
-      planetMeta.forEach(([key, name, period, distance, description]) => {
-        const col = document.createElement("div");
-        col.className = "col-lg-6";
-        col.innerHTML = `
+      planetMeta.forEach(
+        ({ key, name, period, distance, description, videoId }) => {
+          const col = document.createElement("div");
+          col.className = "col-lg-6";
+          col.innerHTML = `
                 <div class="detail-card h-100 orbit-card">
                     <div class="card-body">
                         <h5 class="card-title">${name}</h5>
@@ -332,10 +346,25 @@
                             <strong>Description:</strong>
                             <span class="time-comparison-text">${description}</span>
                         </div>
+                        ${
+                          videoId
+                            ? `
+                        <div class="planet-video-block youtube-embed-wrapper">
+                          <iframe
+                            class="youtube-embed-frame planet-video-frame"
+                            src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=1&rel=0&playsinline=1"
+                            title="${name} video"
+                            allow="autoplay; encrypted-media; picture-in-picture"
+                            allowfullscreen
+                          ></iframe>
+                        </div>`
+                            : ""
+                        }
                     </div>
                 </div>`;
-        planetCards.appendChild(col);
-      });
+          planetCards.appendChild(col);
+        },
+      );
 
       function formatValue(value, suffix) {
         if (value >= 1000000)
