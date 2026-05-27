@@ -353,6 +353,7 @@
                             ? `
                         <div class="planet-video-block youtube-embed-wrapper" data-video-id="${videoId}">
                           <iframe
+                            id="yt-${key}"
                             class="youtube-embed-frame planet-video-frame"
                             src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&rel=0&playsinline=1&fs=0"
                             title="${name} video"
@@ -415,16 +416,73 @@
 
       calculatePlanetaryTime();
 
-      // Enable YouTube controls on click
+      // Enable YouTube controls on click, but remove them immediately when playback starts
+      function loadYouTubeAPI(done) {
+        if (window.YT && window.YT.Player) return done();
+        const tag = document.createElement("script");
+        tag.src = "https://www.youtube.com/iframe_api";
+        document.head.appendChild(tag);
+        window.onYouTubeIframeAPIReady = done;
+      }
+
       document.querySelectorAll(".youtube-embed-wrapper").forEach((wrapper) => {
         const iframe = wrapper.querySelector("iframe");
-        if (iframe && iframe.dataset.showsControls === "false") {
-          wrapper.addEventListener("click", () => {
-            const videoId = wrapper.dataset.videoId;
-            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=1&rel=0&playsinline=1&fs=0`;
-            iframe.dataset.showsControls = "true";
+        if (!iframe || iframe.dataset.showsControls === "true") return;
+
+        wrapper.addEventListener("click", () => {
+          const videoId = wrapper.dataset.videoId;
+          // mark as handled so we don't double-init
+          iframe.dataset.showsControls = "true";
+
+          loadYouTubeAPI(() => {
+            const iframeId = iframe.id;
+            const player = new YT.Player(iframeId, {
+              videoId,
+              playerVars: {
+                autoplay: 1,
+                mute: 1,
+                loop: 1,
+                playlist: videoId,
+                controls: 1,
+                rel: 0,
+                playsinline: 1,
+                fs: 0,
+              },
+              events: {
+                onStateChange: (e) => {
+                  if (e.data === YT.PlayerState.PLAYING) {
+                    // capture current time then replace the player with a controls=0 iframe
+                    const current = player.getCurrentTime?.() || 0;
+                    try {
+                      player.destroy();
+                    } catch (err) {
+                      /* ignore */
+                    }
+
+                    const newIframe = document.createElement("iframe");
+                    newIframe.id = iframeId;
+                    newIframe.className = iframe.className;
+                    newIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&rel=0&playsinline=1&fs=0&start=${Math.floor(
+                      current,
+                    )}`;
+                    newIframe.title = iframe.title;
+                    newIframe.setAttribute(
+                      "allow",
+                      iframe.getAttribute("allow") ||
+                        "autoplay; encrypted-media; picture-in-picture",
+                    );
+                    newIframe.setAttribute("allowfullscreen", "");
+                    newIframe.dataset.showsControls = "false";
+
+                    // replace wrapper contents with the new iframe
+                    wrapper.innerHTML = "";
+                    wrapper.appendChild(newIframe);
+                  }
+                },
+              },
+            });
           });
-        }
+        });
       });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
