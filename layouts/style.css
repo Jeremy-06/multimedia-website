@@ -1189,9 +1189,13 @@ a {
 
 .script-download-layout {
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   gap: 1.5rem;
   align-items: stretch;
+}
+
+.script-download-layout > * {
+  min-width: 0;
 }
 
 .script-info-card {
@@ -1237,6 +1241,7 @@ a {
   margin: 0;
   max-height: 620px;
   overflow: auto;
+  max-width: 100%;
   padding: 1.25rem;
   border-radius: 18px;
   background: rgba(8, 8, 8, 0.82);
@@ -1253,7 +1258,8 @@ a {
   white-space: inherit;
   word-break: normal;
   overflow-wrap: normal;
-  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  font-family:
+    ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
 }
 
 .accent-card {

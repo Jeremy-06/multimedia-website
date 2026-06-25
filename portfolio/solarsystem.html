@@ -260,7 +260,11 @@
                 </li>
               </ul>
               <div class="script-actions">
-                <a class="btn btn-cosmic" href="./solarsystem-script.py" download>
+                <a
+                  class="btn btn-cosmic"
+                  href="./solarsystem-script.py"
+                  download
+                >
                   Download .py
                 </a>
                 <button
@@ -280,14 +284,18 @@
             <article class="detail-card script-code-card">
               <div class="script-toolbar">
                 <span class="info-kicker">Code Preview</span>
-                <span class="script-file-label">portfolio/solarsystem-script.py</span>
+                <span class="script-file-label"
+                  >portfolio/solarsystem-script.py</span
+                >
               </div>
-              <pre class="script-code-block"><code id="blenderScriptCode">Loading script...</code></pre>
+              <pre
+                class="script-code-block"
+              ><code id="blenderScriptCode">Loading script...</code></pre>
             </article>
           </div>
         </div>
       </section>
-
+      fetch(scriptSourcePath)
       <section class="tutorial-section py-5">
         <div class="container">
           <div class="section-heading">
@@ -326,7 +334,7 @@
           key: "mercury",
           name: "Mercury",
           period: "88 Earth days",
-          distance: "57.9 million km",
+                          await navigator.clipboard.writeText(scriptText);
           description:
             "The smallest and fastest planet, with dramatic temperature swings and a cratered surface.",
           videoId: "YsiDfw7jpQY",
@@ -544,7 +552,9 @@
               copyScriptButton.classList.add("btn-outline-light");
             }, 1200);
           } catch (error) {
-            setScriptStatus("Clipboard access was blocked, so use the download link instead.");
+            setScriptStatus(
+              "Clipboard access was blocked, so use the download link instead.",
+            );
           }
         });
       }
