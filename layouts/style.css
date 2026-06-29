@@ -275,8 +275,9 @@ body::before {
 .btn-success,
 .btn-cosmic,
 .btn-glow {
-  background: linear-gradient(135deg, #ffffff 0%, #cfcfcf 38%, #ff4d4d 100%);
+  background: linear-gradient(135deg, #ff4d4d 0%, #b91c1c 55%, #4a0c0c 100%);
   color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
 }
 
 .btn-outline-light,
@@ -520,10 +521,11 @@ a {
 
 .btn-glow,
 .btn-cosmic {
-  background: linear-gradient(135deg, #ffffff 0%, #cfcfcf 38%, #ff4d4d 100%);
+  background: linear-gradient(135deg, #ff4d4d 0%, #b91c1c 55%, #4a0c0c 100%);
   border: 0;
   color: #fff;
   font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
@@ -1189,7 +1191,7 @@ a {
 
 .script-download-layout {
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1.15fr);
   gap: 1.5rem;
   align-items: stretch;
 }
@@ -1240,6 +1242,7 @@ a {
 .script-code-block {
   margin: 0;
   max-height: 620px;
+  min-height: 360px;
   overflow: auto;
   max-width: 100%;
   padding: 1.25rem;
@@ -1297,8 +1300,20 @@ a {
     rgba(21, 21, 21, 0.84);
 }
 
+.orbit-card .card-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .planet-video-block {
   margin-top: 1.1rem;
+}
+
+.planet-download-actions {
+  justify-content: center;
+  margin-top: auto;
+  padding-top: 1.1rem;
 }
 
 .video-placeholder,
@@ -1926,6 +1941,10 @@ iframe {
 
   .weeks-grid-compact {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .script-code-block {
+    min-height: 300px;
   }
 }
 

@@ -97,11 +97,11 @@
                 <i class="fab fa-youtube"></i>
                 <span>Final solar system video</span>
               </div>
-              <div class="youtube-embed-wrapper" data-video-id="ZRNQa5ud5yQ">
+              <div class="youtube-embed-wrapper" data-video-id="wrYXAeqSFUU">
                 <iframe
                   id="yt-solarsystem-final"
                   class="youtube-embed-frame"
-                  src="https://www.youtube.com/embed/ZRNQa5ud5yQ"
+                  src="https://www.youtube.com/embed/wrYXAeqSFUU"
                   title="Final solar system video"
                   loading="lazy"
                   allow="
@@ -118,6 +118,16 @@
                 ></iframe>
               </div>
             </div>
+          </div>
+          <div class="script-actions mt-4">
+            <a
+              class="btn btn-cosmic"
+              href="https://drive.google.com/file/d/15FDzVo8_mBAknQbeYkgYFhuR4Ua9fHc2/view?usp=drive_link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Download Final Solar System Script
+            </a>
           </div>
         </div>
       </section>
@@ -229,73 +239,94 @@
       <section class="project-script-section">
         <div class="container">
           <div class="section-heading">
-            <p class="eyebrow">Try It Yourself</p>
-            <h2 class="section-title left-title">Blender Python script</h2>
+            <p class="eyebrow">Blender Guide</p>
+            <h2 class="section-title left-title">
+              How to render your planet in Blender
+            </h2>
             <p class="section-copy script-intro-copy">
-              The full script used to build the solar system scene is available
-              below. Viewers can inspect it in the browser, copy it to Blender,
-              or download the Python file for editing.
+              Download the scripts and textures, update the local texture path,
+              then run the Python script inside Blender's Scripting workspace.
             </p>
+            <div class="script-actions">
+              <a
+                class="btn btn-cosmic"
+                href="https://drive.google.com/drive/folders/1bpGJywG4UMPfpviu8Pzt6BknmDB7fmB3?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Download All Resources
+              </a>
+            </div>
           </div>
 
           <div class="script-download-layout">
-            <article class="detail-card script-info-card">
-              <span class="info-kicker">How to use</span>
-              <h3>Run it in Blender</h3>
+            <article class="detail-card">
+              <span class="info-kicker">Steps 1-3</span>
+              <h3>Prepare the files</h3>
               <ul class="feature-list tight-list">
                 <li>
-                  Open Blender's Scripting workspace and paste the script into a
-                  new text block.
+                  Download the provided .zip file containing the Blender Python
+                  script and texture images, such as jupiter.jpg and
+                  universe.jpg.
                 </li>
                 <li>
-                  Update <strong>base_path</strong> so it points to your local
-                  texture folder before running.
+                  Extract the .zip file to a folder and remember the exact
+                  location, such as C:\Users\YourName\Desktop\PlanetProject.
                 </li>
                 <li>
-                  Press <strong>Run Script</strong> to create the scene,
-                  materials, cameras, and keyframes.
+                  Open the downloaded Python script in a text editor, find
+                  <strong>base_path</strong>, and change it to your extracted
+                  folder path.
                 </li>
                 <li>
-                  Use the download button if you want a local copy to customize.
+                  Keep the <strong>r</strong> before the quotation marks, for
+                  example:
+                  <strong>
+                    base_path =
+                    r"C:\Users\YourName\Desktop\PlanetProject"
+                  </strong>.
+                </li>
+                <li>
+                  Open Blender, close the splash screen, go to the
+                  <strong>Scripting</strong> tab, and click
+                  <strong>+ New</strong>.
                 </li>
               </ul>
-              <div class="script-actions">
-                <a
-                  class="btn btn-cosmic"
-                  href="./solarsystem-script.py"
-                  download
-                >
-                  Download .py
-                </a>
-                <button
-                  class="btn btn-outline-light"
-                  id="copyScriptButton"
-                  type="button"
-                  disabled
-                >
-                  Copy Script
-                </button>
-              </div>
-              <p class="script-status" id="scriptStatus">
-                Loading script preview...
-              </p>
             </article>
 
-            <article class="detail-card script-code-card">
-              <div class="script-toolbar">
-                <span class="info-kicker">Code Preview</span>
-                <span class="script-file-label"
-                  >portfolio/solarsystem-script.py</span
-                >
-              </div>
-              <pre
-                class="script-code-block"
-              ><code id="blenderScriptCode">Loading script...</code></pre>
+            <article class="detail-card accent-card">
+              <span class="info-kicker">Steps 4-6</span>
+              <h3>Run and render</h3>
+              <ul class="feature-list tight-list">
+                <li>
+                  Copy all script code from your text editor and paste it into
+                  Blender's text editor.
+                </li>
+                <li>
+                  Click the <strong>Run Script</strong> play button or press
+                  <strong>Alt + P</strong> to generate the planet, moons,
+                  cameras, and lighting.
+                </li>
+                <li>
+                  Hover over the 3D viewport, hold <strong>Z</strong>, and drag
+                  upward to select <strong>Rendered</strong>.
+                </li>
+                <li>
+                  Press <strong>Spacebar</strong> to watch the camera animation
+                  and orbiting moons play in real time.
+                </li>
+                <li>
+                  In <strong>Output Properties</strong>, choose the save folder,
+                  change <strong>File Format</strong> to
+                  <strong>FFmpeg Video</strong>, then set
+                  <strong>Container</strong> to <strong>MPEG-4</strong>.
+                </li>
+              </ul>
             </article>
           </div>
         </div>
       </section>
-      fetch(scriptSourcePath)
+
       <section class="tutorial-section py-5">
         <div class="container">
           <div class="section-heading">
@@ -327,6 +358,7 @@
         saturn: 29.447498,
         uranus: 84.016846,
         neptune: 164.79132,
+        pluto: 248,
       };
 
       const planetMeta = [
@@ -334,10 +366,12 @@
           key: "mercury",
           name: "Mercury",
           period: "88 Earth days",
-                          await navigator.clipboard.writeText(scriptText);
+          distance: "57.9 million km",
           description:
             "The smallest and fastest planet, with dramatic temperature swings and a cratered surface.",
           videoId: "YsiDfw7jpQY",
+          downloadUrl:
+            "https://drive.google.com/file/d/1pE01mo6hjTPe-sqVmP4gKrajHFxQCHFX/view?usp=drive_link",
         },
         {
           key: "venus",
@@ -347,6 +381,8 @@
           description:
             "Earth's cloud-covered twin, shaped by a thick atmosphere and extreme greenhouse heat.",
           videoId: "kqeOiMRlByo",
+          downloadUrl:
+            "https://drive.google.com/file/d/1o2_3m_4k6BEAGBZF-WdycoWU48or5VNN/view?usp=drive_link",
         },
         {
           key: "earth",
@@ -355,7 +391,9 @@
           distance: "149.6 million km",
           description:
             "Our reference planet and the only known world with confirmed life.",
-          videoId: "oaf6P21y1Kw",
+          videoId: "BWjV6QJ424Q",
+          downloadUrl:
+            "https://drive.google.com/file/d/1C3QoMIdRdXpMR3Ca8c-pgpvit3tL211v/view?usp=drive_link",
         },
         {
           key: "mars",
@@ -364,7 +402,9 @@
           distance: "227.9 million km",
           description:
             "A cold desert planet known for iron-rich terrain, dust storms, and exploration interest.",
-          videoId: "hV2vlUG4brQ",
+          videoId: "0BJSdJs4-L8",
+          downloadUrl:
+            "https://drive.google.com/file/d/1i-qtPMReB0w1ayZCcncXnKUa5AQpQU5S/view?usp=drive_link",
         },
         {
           key: "jupiter",
@@ -373,7 +413,9 @@
           distance: "778.5 million km",
           description:
             "The gas giant with immense storms, strong gravity, and a huge magnetosphere.",
-          videoId: "mu1oMosIarE",
+          videoId: "Gvdls6H61AA",
+          downloadUrl:
+            "https://drive.google.com/file/d/1h-sgG8okOvgumArCIjODIaxCQULducu_/view?usp=drive_link",
         },
         {
           key: "saturn",
@@ -382,7 +424,9 @@
           distance: "1.43 billion km",
           description:
             "A ringed giant with striking banding and an iconic silhouette.",
-          videoId: "cceXwKkJnoQ",
+          videoId: "xP0C0ggkQCU",
+          downloadUrl:
+            "https://drive.google.com/file/d/1PpfW0htt3LDQ05iT5841MC0i-SJI-5Fj/view?usp=drive_link",
         },
         {
           key: "uranus",
@@ -391,7 +435,9 @@
           distance: "2.87 billion km",
           description:
             "An ice giant that rotates on its side, giving it an unusual orbital character.",
-          videoId: "sdtymw7KjnQ",
+          videoId: "4aOLnaG0Jfs",
+          downloadUrl:
+            "https://drive.google.com/file/d/13R9w-iJMmNHt-1cdb1nkg4GZq50i21Nx/view?usp=drive_link",
         },
         {
           key: "neptune",
@@ -400,14 +446,35 @@
           distance: "4.50 billion km",
           description:
             "A deep blue giant known for powerful winds and distant orbiting.",
-          videoId: "itVYrmmuECE",
+          videoId: "GZSck5DlWJw",
+          downloadUrl:
+            "https://drive.google.com/file/d/1x963ZQME7Klpo3FwvxTLl-JGdfo5T8Cv/view?usp=drive_link",
+        },
+        {
+          key: "pluto",
+          name: "Pluto",
+          period: "248 Earth years",
+          distance: "5.91 billion km",
+          description:
+            "A distant dwarf planet with an eccentric orbit and icy surface features.",
+          videoId: "d6bT59JVGeo",
+          downloadUrl:
+            "https://drive.google.com/file/d/13qFStMU_IAx8hRUDr-XTBGxnUJPXUmCn/view?usp=drive_link",
         },
       ];
 
       const planetCards = document.getElementById("planetCards");
 
       planetMeta.forEach(
-        ({ key, name, period, distance, description, videoId }) => {
+        ({
+          key,
+          name,
+          period,
+          distance,
+          description,
+          videoId,
+          downloadUrl,
+        }) => {
           const col = document.createElement("div");
           col.className = "col-lg-6";
           col.innerHTML = `
@@ -440,6 +507,16 @@
                         </div>`
                             : ""
                         }
+                        <div class="script-actions planet-download-actions">
+                          <a
+                            class="btn btn-cosmic btn-sm"
+                            href="${downloadUrl}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Download ${name} Resources
+                          </a>
+                        </div>
                     </div>
                 </div>`;
           planetCards.appendChild(col);
@@ -491,73 +568,6 @@
         });
 
       calculatePlanetaryTime();
-
-      const scriptSourcePath = "./solarsystem-script.py";
-      const scriptCodeElement = document.getElementById("blenderScriptCode");
-      const scriptStatusElement = document.getElementById("scriptStatus");
-      const copyScriptButton = document.getElementById("copyScriptButton");
-
-      function setScriptStatus(message) {
-        if (scriptStatusElement) {
-          scriptStatusElement.textContent = message;
-        }
-      }
-
-      fetch(scriptSourcePath)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`HTTP ${response.status}`);
-          }
-
-          return response.text();
-        })
-        .then((scriptText) => {
-          if (scriptCodeElement) {
-            scriptCodeElement.textContent = scriptText;
-          }
-
-          if (copyScriptButton) {
-            copyScriptButton.disabled = false;
-          }
-
-          setScriptStatus("Loaded from solarsystem-script.py");
-        })
-        .catch(() => {
-          if (scriptCodeElement) {
-            scriptCodeElement.textContent =
-              "The script preview could not load. Download the .py file to view the full Blender script.";
-          }
-
-          setScriptStatus(
-            "Preview unavailable in this browser session. Use the download button instead.",
-          );
-        });
-
-      if (copyScriptButton) {
-        copyScriptButton.addEventListener("click", async () => {
-          if (!scriptCodeElement || copyScriptButton.disabled) {
-            return;
-          }
-
-          try {
-            await navigator.clipboard.writeText(scriptCodeElement.textContent);
-            const originalLabel = copyScriptButton.textContent;
-            copyScriptButton.textContent = "Copied";
-            copyScriptButton.classList.remove("btn-outline-light");
-            copyScriptButton.classList.add("btn-success");
-
-            window.setTimeout(() => {
-              copyScriptButton.textContent = originalLabel;
-              copyScriptButton.classList.remove("btn-success");
-              copyScriptButton.classList.add("btn-outline-light");
-            }, 1200);
-          } catch (error) {
-            setScriptStatus(
-              "Clipboard access was blocked, so use the download link instead.",
-            );
-          }
-        });
-      }
 
       // Enable YouTube controls on click, but remove them immediately when playback starts
       function loadYouTubeAPI(done) {
